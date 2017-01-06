@@ -47,7 +47,15 @@ namespace WindowsElnVatView.model
             elnVat.addressRecipient = selectNodeRecipient.SelectSingleNode("w3s:address", ns).InnerText;
             //парсим contract
             XmlNode selectNodeContract = doc.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract", ns);
-            elnVat.numberDeliveryCondition = selectNodeContract.SelectSingleNode("w3s:number", ns).InnerText;
+            //Номер договора забираем Пока что так,другого не придумал
+                if(selectNodeContract.SelectSingleNode("w3s:number", ns).InnerText == "")
+                 {
+                     elnVat.numberDeliveryCondition = "Б/н";
+                 }else{
+                     elnVat.numberDeliveryCondition = selectNodeContract.SelectSingleNode("w3s:number", ns).InnerText;
+                 }
+            //elnVat.numberDeliveryCondition = selectNodeContract.SelectSingleNode("w3s:number", ns).InnerText;
+            //elnVat.numberDeliveryCondition = selectNodeContract.SelectSingleNode("w3s:number", ns).InnerText;
             elnVat.dateDeliveryCondition = selectNodeContract.SelectSingleNode("w3s:date", ns).InnerText;
             //парсим roster атрибуты
             XmlNode selectNodeRosterAtribute = doc.SelectSingleNode("/w3s:issuance/w3s:roster", ns);

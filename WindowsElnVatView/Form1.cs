@@ -28,7 +28,7 @@ namespace WindowsElnVatView
             
             //разносим по форме general
             
-            numberTextBox1.Text = formElnVat.number;
+            maskedTextBox4.Text = formElnVat.number;
             maskedTextBox1.Text = formElnVat.dateIssuance;
             maskedTextBox2.Text = formElnVat.dateTransaction;
             if (formElnVat.documentType == "ORIGINAL") { originalCheckBox1.Checked = true; }
@@ -51,9 +51,15 @@ namespace WindowsElnVatView
             checkBox9.Checked = formElnVat.specialDealGoodsRecipient;
             checkBox10.Checked = formElnVat.bigCompanyRecipient;
             textBox8.Text = formElnVat.countryCodeRecipient;
+
+            var recipient = new parseNalogGovBy();
             textBox7.Text = formElnVat.unpRecipient;
-            textBox6.Text = formElnVat.nameRecipient;
-            textBox5.Text = formElnVat.addressRecipient;
+            recipient = parseNalogGovBy.getXmlFromNalogGovBy(formElnVat.unpRecipient);
+            textBox6.Text = recipient.nameNalogGovBy;
+            //не у всех забит адрес,если адреса нету,оставляем старый
+            if(recipient.adressNalogGovBy == "") { textBox5.Text = formElnVat.addressRecipient; }
+            else { textBox5.Text = recipient.adressNalogGovBy; }
+            
 
             //разносим по форме deliveryCondition
             textBox9.Text = formElnVat.numberDeliveryCondition;
@@ -72,7 +78,7 @@ namespace WindowsElnVatView
         {
             var XMlDateForm = new General();
             //заполняем модель из таблицы
-            XMlDateForm.number = numberTextBox1.Text;
+            XMlDateForm.number = maskedTextBox4.Text;
             XMlDateForm.dateIssuance = maskedTextBox1.Text;
             XMlDateForm.dateTransaction = maskedTextBox2.Text;
             if (originalCheckBox1.Checked == true) { XMlDateForm.documentType = "ORIGINAL"; }
@@ -143,6 +149,7 @@ namespace WindowsElnVatView
                         {
                             fileName = openFileDialog1.FileName;
                             parseXml(myStream);
+                            
                             label33.Text = "Документ редактируется";
                         }
                     }
@@ -185,6 +192,15 @@ namespace WindowsElnVatView
         private void openFileDialog1_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
         {
 
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            var recipient = new parseNalogGovBy();
+            string unp = textBox7.Text;
+            recipient = parseNalogGovBy.getXmlFromNalogGovBy(unp);
+            textBox6.Text = recipient.nameNalogGovBy;
+            textBox5.Text = recipient.adressNalogGovBy;
         }
     }
 }

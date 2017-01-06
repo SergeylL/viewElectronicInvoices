@@ -56,6 +56,7 @@
     <Compile Include="model\ModelXMLelnVat.cs" />
     <Compile Include="model\ModelXMLParse.cs" />
     <Compile Include="model\ModelXMLParsePosition.cs" />
+    <Compile Include="model\parseNalogGovBy.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControl1.cs">

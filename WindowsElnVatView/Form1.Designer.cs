@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.numberLabel = new System.Windows.Forms.Label();
-            this.numberTextBox1 = new System.Windows.Forms.TextBox();
             this.dateEChFlabel1 = new System.Windows.Forms.Label();
             this.dateTranzactionlabel1 = new System.Windows.Forms.Label();
             this.documentTypelabel1 = new System.Windows.Forms.Label();
@@ -94,7 +93,9 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.label31 = new System.Windows.Forms.Label();
+            this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
             this.label34 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -106,13 +107,6 @@
             this.numberLabel.Size = new System.Drawing.Size(125, 13);
             this.numberLabel.TabIndex = 0;
             this.numberLabel.Text = "1.Номер счет фактуры:";
-            // 
-            // numberTextBox1
-            // 
-            this.numberTextBox1.Location = new System.Drawing.Point(424, 8);
-            this.numberTextBox1.Name = "numberTextBox1";
-            this.numberTextBox1.Size = new System.Drawing.Size(292, 20);
-            this.numberTextBox1.TabIndex = 1;
             // 
             // dateEChFlabel1
             // 
@@ -374,7 +368,7 @@
             // 
             this.textBox7.Location = new System.Drawing.Point(550, 237);
             this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(405, 20);
+            this.textBox7.Size = new System.Drawing.Size(200, 20);
             this.textBox7.TabIndex = 48;
             // 
             // label14
@@ -553,6 +547,7 @@
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            this.openFileDialog1.Multiselect = true;
             this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
             // 
             // button3
@@ -673,21 +668,41 @@
             this.label31.Size = new System.Drawing.Size(0, 13);
             this.label31.TabIndex = 90;
             // 
+            // maskedTextBox4
+            // 
+            this.maskedTextBox4.Location = new System.Drawing.Point(424, 5);
+            this.maskedTextBox4.Mask = "000000000-0000-0000000000";
+            this.maskedTextBox4.Name = "maskedTextBox4";
+            this.maskedTextBox4.Size = new System.Drawing.Size(305, 20);
+            this.maskedTextBox4.TabIndex = 91;
+            // 
             // label34
             // 
             this.label34.AutoSize = true;
-            this.label34.Location = new System.Drawing.Point(12, 556);
+            this.label34.Location = new System.Drawing.Point(25, 556);
             this.label34.Name = "label34";
             this.label34.Size = new System.Drawing.Size(10, 13);
-            this.label34.TabIndex = 91;
+            this.label34.TabIndex = 92;
             this.label34.Text = ".";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(760, 237);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(106, 20);
+            this.button4.TabIndex = 93;
+            this.button4.Text = "Проверить УНП";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 590);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label34);
+            this.Controls.Add(this.maskedTextBox4);
             this.Controls.Add(this.label31);
             this.Controls.Add(this.label30);
             this.Controls.Add(this.label29);
@@ -751,7 +766,6 @@
             this.Controls.Add(this.documentTypelabel1);
             this.Controls.Add(this.dateTranzactionlabel1);
             this.Controls.Add(this.dateEChFlabel1);
-            this.Controls.Add(this.numberTextBox1);
             this.Controls.Add(this.numberLabel);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -766,7 +780,6 @@
         #endregion
 
         private System.Windows.Forms.Label numberLabel;
-        private System.Windows.Forms.TextBox numberTextBox1;
         private System.Windows.Forms.Label dateEChFlabel1;
         private System.Windows.Forms.Label dateTranzactionlabel1;
         private System.Windows.Forms.Label documentTypelabel1;
@@ -831,7 +844,9 @@
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.MaskedTextBox maskedTextBox4;
         private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.Button button4;
     }
 }
 
