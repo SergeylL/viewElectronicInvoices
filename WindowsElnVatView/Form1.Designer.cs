@@ -96,6 +96,7 @@
             this.maskedTextBox4 = new System.Windows.Forms.MaskedTextBox();
             this.label34 = new System.Windows.Forms.Label();
             this.button4 = new System.Windows.Forms.Button();
+            this.label35 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -695,11 +696,21 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Location = new System.Drawing.Point(202, 338);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(41, 13);
+            this.label35.TabIndex = 94;
+            this.label35.Text = "label35";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 590);
+            this.Controls.Add(this.label35);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label34);
             this.Controls.Add(this.maskedTextBox4);
@@ -847,6 +858,7 @@
         private System.Windows.Forms.MaskedTextBox maskedTextBox4;
         private System.Windows.Forms.Label label34;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label35;
     }
 }
 

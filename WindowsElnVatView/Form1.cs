@@ -163,7 +163,13 @@ namespace WindowsElnVatView
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //parseXml();
+            string[] s = Environment.GetCommandLineArgs();
+            if(s.Length > 1) {
+                Stream openFileAssoc = null;
+                fileName = s[1];
+                openFileAssoc = File.Open(fileName,FileMode.Open);
+                parseXml(openFileAssoc);
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
