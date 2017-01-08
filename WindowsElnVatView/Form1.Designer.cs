@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.numberLabel = new System.Windows.Forms.Label();
             this.dateEChFlabel1 = new System.Windows.Forms.Label();
             this.dateTranzactionlabel1 = new System.Windows.Forms.Label();
@@ -262,6 +263,7 @@
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(160, 215);
+            this.textBox1.MaxLength = 4;
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(307, 20);
             this.textBox1.TabIndex = 27;
@@ -278,6 +280,7 @@
             // textBox2
             // 
             this.textBox2.Location = new System.Drawing.Point(60, 237);
+            this.textBox2.MaxLength = 9;
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(407, 20);
             this.textBox2.TabIndex = 29;
@@ -368,6 +371,7 @@
             // textBox7
             // 
             this.textBox7.Location = new System.Drawing.Point(550, 237);
+            this.textBox7.MaxLength = 9;
             this.textBox7.Name = "textBox7";
             this.textBox7.Size = new System.Drawing.Size(200, 20);
             this.textBox7.TabIndex = 48;
@@ -384,6 +388,7 @@
             // textBox8
             // 
             this.textBox8.Location = new System.Drawing.Point(650, 215);
+            this.textBox8.MaxLength = 4;
             this.textBox8.Name = "textBox8";
             this.textBox8.Size = new System.Drawing.Size(305, 20);
             this.textBox8.TabIndex = 46;
@@ -595,8 +600,10 @@
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(9, 420);
+            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(947, 116);
             this.dataGridView1.TabIndex = 82;
@@ -778,6 +785,7 @@
             this.Controls.Add(this.dateTranzactionlabel1);
             this.Controls.Add(this.dateEChFlabel1);
             this.Controls.Add(this.numberLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Обозреватель эл. счет фактур";

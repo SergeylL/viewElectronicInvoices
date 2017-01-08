@@ -70,8 +70,20 @@ namespace WindowsElnVatView
             label28.Text = formElnVat.totalCostAttrib;
             label27.Text = formElnVat.totalCostVatAttrib;
             label31.Text = formElnVat.totalExciseAttrib;
-
+            //заполняю элемент таблицы
             dataGridView1.DataSource = listRoster;
+            //добавляю названия столбцам
+            dataGridView1.Columns[0].HeaderText = "Название";
+            dataGridView1.Columns[1].HeaderText = "№";
+            dataGridView1.Columns[2].HeaderText = "Количество";
+            dataGridView1.Columns[2].HeaderText = "Количество";
+            dataGridView1.Columns[3].HeaderText = "Цена 1 шт.";
+            dataGridView1.Columns[4].HeaderText = "Цена без НДС";
+            dataGridView1.Columns[5].HeaderText = "Акциз";
+            dataGridView1.Columns[6].HeaderText = "% НДС";
+            dataGridView1.Columns[7].HeaderText = "Тип";
+            dataGridView1.Columns[8].HeaderText = "Кол-во НДС";
+            dataGridView1.Columns[9].HeaderText = "Цена с НДС";
         }
 
         private General saveDateFormToModelXML()
@@ -128,7 +140,7 @@ namespace WindowsElnVatView
             }
             return listRewriteModelFromTable;
         }
-
+        //Открываю файл на чтение
         private void button3_Click(object sender, EventArgs e)
         {
             Stream myStream = null;
@@ -169,6 +181,7 @@ namespace WindowsElnVatView
                 fileName = s[1];
                 openFileAssoc = File.Open(fileName,FileMode.Open);
                 parseXml(openFileAssoc);
+                openFileAssoc.Close();
             }
         }
 
