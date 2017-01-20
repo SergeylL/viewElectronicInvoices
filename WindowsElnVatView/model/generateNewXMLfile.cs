@@ -16,10 +16,12 @@ namespace WindowsElnVatView.model
             return newParamtr;
          }
 
-        public static void createNewFileXML(General dateFromForm, string file, List<ModelXMLParsePosition>itemRoster)
+        public static void createNewFileXML(General dateFromForm, string file,bool checkDoc, ParseDocuments document, List<ModelXMLParsePosition>itemRoster)
         {
             General dateForm = dateFromForm;
             List<ModelXMLParsePosition> itemRosterXMl = itemRoster;
+            ParseDocuments documents = document;
+            bool checkStatDocs = checkDoc;
             string itemXML = "";
             //XmlTextWriter writeXmlFile = new XmlTextWriter("e:\\Winners.xml", Encoding.UTF8);
             //writeXmlFile.WriteStartDocument();
@@ -43,9 +45,29 @@ namespace WindowsElnVatView.model
                 "<costVat>" + item.costVatRoster + "</costVat>" +
                 "</rosterItem>";
                 itemXML = itemXML + itemRost;
-
             }
-            string xmlShema = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + "<issuance xmlns=\"http://www.w3schools.com\" sender=\""+ dateFromForm.unpProvider +"\"> " +
+            string docsForXml = "";
+            if (checkStatDocs == true)
+            {
+                docsForXml = "<documents>" +
+                                     "<document>" +
+                                         "<docType>" +
+                                            "<code>" + documents.docType + "</code>" +
+                                          "</docType>" +
+                                                "<date>" + documents.date + "</date>" +
+                                                "<blankCode>" + documents.blankCode + "</blankCode>" +
+                                                "<seria>" + documents.serial + "</seria>" +
+                                                "<number>" + documents.number + "</number>" +
+                                      "</document>" +
+                                "</documents>";
+            }else
+            {
+                docsForXml = "";
+            }
+
+            
+
+            string xmlShema = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + " <issuance xmlns=\"http://www.w3schools.com\" sender=\""+ dateFromForm.unpProvider +"\"> " +
    "<general> " +
         "<number>"+ dateFromForm.number +"</number>" +
         "<dateIssuance>"+ dateFromForm.dateIssuance +"</dateIssuance>" +
@@ -82,6 +104,7 @@ namespace WindowsElnVatView.model
               "<contract>" +
                     "<number>"+ dateFromForm.numberDeliveryCondition +"</number>" +
                     "<date>"+ dateFromForm.dateDeliveryCondition +"</date>" +
+                    docsForXml +
               "</contract>" +
          "</deliveryCondition>" +
               "<roster totalCostVat=\""+ dateFromForm.totalCostVatAttrib + "\" totalExcise=\""+ dateFromForm.totalExciseAttrib + "\" totalVat=\""+ dateFromForm.totalVatAttrib + "\" totalCost=\""+ dateFromForm.totalCostAttrib +"\">" +

@@ -5,6 +5,7 @@ using System.IO;
 using System.Xml;
 using WindowsElnVatView.model;
 using System.Collections.Generic;
+using WindowsElnVatView.other;
 
 namespace WindowsElnVatView
 {
@@ -22,8 +23,10 @@ namespace WindowsElnVatView
             XmlDocument newDocumentXml = new XmlDocument();
             newDocumentXml.Load(openFile);
             var formElnVat = new General();
+            var document = new ParseDocuments();
             var listRoster = new List<ModelXMLParsePosition>();
             formElnVat = XMLParsers.ParseElnVatFromXMLDocument(newDocumentXml);
+            document = XMLParsers.documentsXMLparse(newDocumentXml);
             listRoster = XMLParsers.parseItemRoster(newDocumentXml);
             
             //разносим по форме general
@@ -64,6 +67,35 @@ namespace WindowsElnVatView
             //разносим по форме deliveryCondition
             textBox9.Text = formElnVat.numberDeliveryCondition;
             maskedTextBox3.Text = formElnVat.dateDeliveryCondition;
+            //если модель пустая,значит в документе небыло заполнены элементы документа, счекбокс закрыт
+             int n = 0;
+            if (document == null)
+            {
+                checkBox11.Checked = false;
+            }
+            else
+            {
+               
+                int s = docTypeLabel.Items.Count;
+                SelectData code = null;
+                for (int i = 0; i< s; i++)
+                {
+                     code = (SelectData)docTypeLabel.Items[i];
+                    if (code.value == "602")
+                    {
+                        docTypeLabel.SelectedItem = i;
+                        n = i;
+                        break;
+                    }
+                }
+                
+                codeBlankLabel.Text = document.blankCode;
+                maskedTextBox5.Text = document.date;
+                serialLabel.Text = document.serial;
+                numLabel.Text = document.number;
+                checkBox11.Checked = true;
+                
+            }
 
             //разносим по форме roster
             label29.Text = formElnVat.totalVatAttrib;
@@ -126,7 +158,25 @@ namespace WindowsElnVatView
             
             return XMlDateForm;
             }
-
+        //сохраняем значения документа в хмл
+        private ParseDocuments saveDocumentsToXML()
+        {
+            var doc = new ParseDocuments();
+            //docTypeLabel.SelectedItem = docTypeLabel.FindString(document.docType);
+            //codeBlankLabel.Text = document.blankCode;
+            //maskedTextBox5.Text = document.date;
+            //serialLabel.Text = document.serial;
+            //numLabel.Text = document.number;
+            //checkBox11.Checked = true;
+            string selectedType = ((SelectData)docTypeLabel.SelectedItem).value;
+            
+            doc.docType = selectedType;
+            doc.blankCode = codeBlankLabel.Text;
+            doc.date = maskedTextBox5.Text;
+            doc.serial = serialLabel.Text;
+            doc.number = numLabel.Text;
+            return doc;
+        }
         private List<ModelXMLParsePosition> saveDateFromTable()
         {
             var listRewriteModelFromTable = new List<ModelXMLParsePosition>();
@@ -172,24 +222,33 @@ namespace WindowsElnVatView
                 }
             }
         }
-
+        //действия при открытии формы
         private void Form1_Load(object sender, EventArgs e)
         {
             string[] s = Environment.GetCommandLineArgs();
-            if(s.Length > 1) {
+
+            // Срочно  переделать эту хуйню,для заполнения списка combobox////////////////////////////////////////////////////
+            docTypeLabel.Items.Add(new SelectData("601","Акт выполненых работ"));
+            docTypeLabel.Items.Add(new SelectData("602", "Акт"));
+            //this.docTypeLabel.SelectedIndex = 0;
+            this.docTypeLabel.SelectedIndex = 1;
+
+            // string pathNewFile = ConfigurationManager.AppSettings["pathNewFile"];
+            if (s.Length > 1) {
                 Stream openFileAssoc = null;
                 fileName = s[1];
                 openFileAssoc = File.Open(fileName,FileMode.Open);
                 parseXml(openFileAssoc);
                 openFileAssoc.Close();
+                
             }
         }
-
+        //exit on app
         private void button2_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
+        //save file
         private void button1_Click(object sender, EventArgs e)
         {
              try {
@@ -197,8 +256,10 @@ namespace WindowsElnVatView
             
                 
                 General insertDateForm = saveDateFormToModelXML();
+                ParseDocuments insertDocumentForm = saveDocumentsToXML();
+                bool checkDock = checkBox11.Checked;
                 newItemRoster = saveDateFromTable();
-                generateNewXMLfile.createNewFileXML(insertDateForm,fileName,newItemRoster);
+                generateNewXMLfile.createNewFileXML(insertDateForm,fileName,checkDock,insertDocumentForm,newItemRoster);
                 label34.Text = "Файл сохранен,можно открыть следующий";
             }
             catch(Exception errSave)
@@ -212,7 +273,7 @@ namespace WindowsElnVatView
         {
 
         }
-
+        //заполняем унп по наджаитю на кнопку,адрес и название
         private void button4_Click(object sender, EventArgs e)
         {
             var recipient = new parseNalogGovBy();
@@ -220,6 +281,49 @@ namespace WindowsElnVatView
             recipient = parseNalogGovBy.getXmlFromNalogGovBy(unp);
             textBox6.Text = recipient.nameNalogGovBy;
             textBox5.Text = recipient.adressNalogGovBy;
+        }
+
+        private void менюToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        //прячем скрываем элементы формы документы
+        private void checkBox11_CheckedChanged(object sender, EventArgs e)
+        {
+            if(checkBox11.Checked == true)
+            {
+                label32.Visible = true;
+                docTypeLabel.Visible = true;
+                blancCodeLabel.Visible = true;
+                codeBlankLabel.Visible = true;
+                serialNumberLabel.Visible = true;
+                serialLabel.Visible = true;
+                numLabel.Visible = true;
+                label35.Visible = true;
+                maskedTextBox5.Visible = true;
+            }else
+            {
+                label32.Visible = false;
+                docTypeLabel.Text = "";
+                docTypeLabel.Visible = false;
+                codeBlankLabel.Text = "";
+                blancCodeLabel.Visible = false;
+                codeBlankLabel.Visible = false;
+                serialNumberLabel.Visible = false;
+                serialLabel.Text = "";
+                serialLabel.Visible = false;
+                numLabel.Text = "";
+                numLabel.Visible = false;
+                label35.Visible = false;
+                maskedTextBox5.Text = "";
+                maskedTextBox5.Visible = false;
+            }
+        }
+
+        private void SearchFromComboBox(string code)
+        {
+            //docTypeLabel.SelectedValue;
+
         }
     }
 }

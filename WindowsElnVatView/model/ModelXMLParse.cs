@@ -100,7 +100,28 @@ namespace WindowsElnVatView.model
             }
             return listRoster;
         }
+        public static ParseDocuments documentsXMLparse(XmlDocument docs)
+        {
+            var document = new ParseDocuments();
+            XmlNamespaceManager ns = new XmlNamespaceManager(docs.NameTable);
+            ns.AddNamespace("w3s", "http://www.w3schools.com");
+            XmlNode doc = docs;
+            XmlNode selectNodeDocument = doc.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents", ns);
             
+            if (selectNodeDocument != null)
+            {
+                document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
+                document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
+                document.blankCode = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:blankCode", ns).InnerText;
+                document.serial = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:seria", ns).InnerText;
+                document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
+                return document;
+            } else
+            {
+                return document = null; 
+            }
+
+        } 
 
         public static bool tryfalse(string lineXml)
         {

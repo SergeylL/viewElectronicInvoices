@@ -33,4 +33,22 @@ namespace WindowsElnVatView.model
 
         }
     }
+    public class ParseDocuments
+    {
+        public string docType { get; set; }
+        public string date { get; set; }
+        public string blankCode { get; set; }
+        public string serial { get; set; }
+        public string number { get; set; }
+
+        public ParseDocuments()
+        {
+            docType = "";
+            date = "";
+            blankCode = "";
+            serial = "";
+            number = "";
+        }
+    }
+ 
 }
