@@ -93,16 +93,17 @@ namespace WindowsElnVatView
                 codeBlankLabel.Text = document.blankCode;
                 maskedTextBox5.Text = document.date;
                 serialLabel.Text = document.serial;
+                valueDocTextBox.Text = document.valueDoc;
                 numLabel.Text = document.number;
                 checkBox11.Checked = true;
                 
             }
 
             //разносим по форме roster
-            /*label29.Text = formElnVat.totalVatAttrib;
+            label29.Text = formElnVat.totalVatAttrib;
             label28.Text = formElnVat.totalCostAttrib;
             label27.Text = formElnVat.totalCostVatAttrib;
-            label31.Text = formElnVat.totalExciseAttrib;*/
+            label31.Text = formElnVat.totalExciseAttrib;
             //заполняю элемент таблицы
             dataGridView1.DataSource = listRoster;
             //добавляю названия столбцам
@@ -151,10 +152,10 @@ namespace WindowsElnVatView
             XMlDateForm.numberDeliveryCondition = textBox9.Text;
             XMlDateForm.dateDeliveryCondition = maskedTextBox3.Text;
             
-           /* XMlDateForm.totalVatAttrib = label29.Text;
+            XMlDateForm.totalVatAttrib = label29.Text;
             XMlDateForm.totalCostAttrib = label28.Text;
             XMlDateForm.totalCostVatAttrib = label27.Text;
-            XMlDateForm.totalExciseAttrib = label31.Text;*/
+            XMlDateForm.totalExciseAttrib = label31.Text;
 
             
             return XMlDateForm;
@@ -173,6 +174,7 @@ namespace WindowsElnVatView
             
             doc.docType = selectedType;
             doc.blankCode = codeBlankLabel.Text;
+            doc.valueDoc = valueDocTextBox.Text;
             doc.date = maskedTextBox5.Text;
             doc.serial = serialLabel.Text;
             doc.number = numLabel.Text;
@@ -308,7 +310,9 @@ namespace WindowsElnVatView
                 codeBlankLabel.Visible = true;
                 serialNumberLabel.Visible = true;
                 serialLabel.Visible = true;
+                valueDocTextBox.Visible = true;
                 numLabel.Visible = true;
+                valueDoc.Visible = true;
                 label35.Visible = true;
                 maskedTextBox5.Visible = true;
             }else
@@ -323,6 +327,8 @@ namespace WindowsElnVatView
                 serialLabel.Text = "";
                 serialLabel.Visible = false;
                 numLabel.Text = "";
+                valueDoc.Visible = false;
+                valueDocTextBox.Visible = false;
                 numLabel.Visible = false;
                 label35.Visible = false;
                 maskedTextBox5.Text = "";

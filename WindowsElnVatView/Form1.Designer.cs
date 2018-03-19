@@ -112,6 +112,8 @@
             this.numLabel = new System.Windows.Forms.TextBox();
             this.label35 = new System.Windows.Forms.Label();
             this.maskedTextBox5 = new System.Windows.Forms.MaskedTextBox();
+            this.valueDoc = new System.Windows.Forms.Label();
+            this.valueDocTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -806,7 +808,7 @@
             // 
             this.codeBlankLabel.Location = new System.Drawing.Point(808, 381);
             this.codeBlankLabel.Name = "codeBlankLabel";
-            this.codeBlankLabel.Size = new System.Drawing.Size(147, 20);
+            this.codeBlankLabel.Size = new System.Drawing.Size(64, 20);
             this.codeBlankLabel.TabIndex = 99;
             this.codeBlankLabel.Visible = false;
             // 
@@ -855,11 +857,31 @@
             this.maskedTextBox5.TabIndex = 104;
             this.maskedTextBox5.Visible = false;
             // 
+            // valueDoc
+            // 
+            this.valueDoc.AutoSize = true;
+            this.valueDoc.Location = new System.Drawing.Point(648, 409);
+            this.valueDoc.Name = "valueDoc";
+            this.valueDoc.Size = new System.Drawing.Size(60, 13);
+            this.valueDoc.TabIndex = 105;
+            this.valueDoc.Text = "Название:";
+            this.valueDoc.Visible = false;
+            // 
+            // valueDocTextBox
+            // 
+            this.valueDocTextBox.Location = new System.Drawing.Point(709, 408);
+            this.valueDocTextBox.Name = "valueDocTextBox";
+            this.valueDocTextBox.Size = new System.Drawing.Size(245, 20);
+            this.valueDocTextBox.TabIndex = 106;
+            this.valueDocTextBox.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(967, 611);
+            this.Controls.Add(this.valueDocTextBox);
+            this.Controls.Add(this.valueDoc);
             this.Controls.Add(this.maskedTextBox5);
             this.Controls.Add(this.label35);
             this.Controls.Add(this.numLabel);
@@ -1036,6 +1058,8 @@
         private System.Windows.Forms.TextBox numLabel;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.MaskedTextBox maskedTextBox5;
+        private System.Windows.Forms.Label valueDoc;
+        private System.Windows.Forms.TextBox valueDocTextBox;
     }
 }
 

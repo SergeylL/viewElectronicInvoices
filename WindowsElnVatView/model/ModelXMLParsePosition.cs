@@ -38,6 +38,7 @@ namespace WindowsElnVatView.model
         public string docType { get; set; }
         public string date { get; set; }
         public string blankCode { get; set; }
+        public string valueDoc { get; set; }
         public string serial { get; set; }
         public string number { get; set; }
 
@@ -46,6 +47,7 @@ namespace WindowsElnVatView.model
             docType = "";
             date = "";
             blankCode = "";
+            valueDoc = "";
             serial = "";
             number = "";
         }

@@ -12,7 +12,7 @@ namespace WindowsElnVatView.model
             //XmlDocument doc = new XmlDocument();<issuance xmlns="http://www.w3schools.com" sender="300987980">
             //doc.Load("doc.xml");
             //парсим general
-            List<Roster> rosters = new List<Roster>();
+           
 
             XmlNamespaceManager ns = new XmlNamespaceManager(docs.NameTable);
             ns.AddNamespace("w3s", "http://www.w3schools.com");
@@ -68,13 +68,13 @@ namespace WindowsElnVatView.model
             elnVat.dateDeliveryCondition = selectNodeContract.SelectSingleNode("w3s:date", ns).InnerText;
             //парсим roster атрибуты
             XmlNode selectNodeRosterAtribute = doc.SelectSingleNode("/w3s:issuance/w3s:roster", ns);
-            string s = selectNodeRosterAtribute.SelectSingleNode("/w3s:rosterItem/w3s:number", ns).InnerText;
+            //string s = selectNodeRosterAtribute.SelectSingleNode("/w3s:rosterItem/w3s:number", ns).InnerText;
                 
 
-           /* elnVat.totalCostVatAttrib = selectNodeRosterAtribute.Attributes[0].InnerText;
+            elnVat.totalCostVatAttrib = selectNodeRosterAtribute.Attributes[0].InnerText;
             elnVat.totalExciseAttrib = selectNodeRosterAtribute.Attributes[1].InnerText;
             elnVat.totalVatAttrib = selectNodeRosterAtribute.Attributes[2].InnerText;
-            elnVat.totalCostAttrib = selectNodeRosterAtribute.Attributes[3].InnerText;*/
+            elnVat.totalCostAttrib = selectNodeRosterAtribute.Attributes[3].InnerText;
 
             return elnVat;
         }
@@ -119,47 +119,66 @@ namespace WindowsElnVatView.model
             ns.AddNamespace("w3s", "http://www.w3schools.com");
             XmlNode doc = docs;
             XmlNode selectNodeDocument = doc.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract", ns);
-            document.docType = selectNodeDocument.SelectSingleNode("w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
-            if (document.docType != null)
+            if(selectNodeDocument.SelectSingleNode("w3s:documents/w3s:document/w3s:docType/w3s:code", ns) != null)
             {
-               if(document.docType == "601")
+                document.docType = selectNodeDocument.SelectSingleNode("w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
+                if (document.docType != null)
                 {
-                    document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
-                    document.blankCode = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:value", ns).InnerText;
-                    document.serial = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:seria", ns).InnerText;
-                    document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
-                    document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
-                    return document;
+                    if (document.docType == "601")
+                    {
+                        document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
+                        document.valueDoc = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:value", ns).InnerText;
+                        document.serial = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:seria", ns).InnerText;
+                        document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
+                        document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
+                        return document;
+                    }
+                    if (document.docType == "608")
+                    {
+                        document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
+                        document.valueDoc = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:value", ns).InnerText;
+                        document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
+                        document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
+                        return document;
+                    }
+                    if (document.docType == "611")
+                    {
+                        document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
+                        document.valueDoc = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:value", ns).InnerText;
+                        document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
+                        document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
+                        return document;
+                    }
+                    if (document.docType == "612")
+                    {
+                        document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
+                        document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
+                        document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
+                        return document;
+                    }
+                  
+                    else
+                    {
+                        document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
+                        document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
+                        document.serial = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:seria", ns).InnerText;
+                        document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
+                        return document;
+                    }
+
                 }
-                if (document.docType == "608")
-                {
-                    document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
-                    document.blankCode = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:value", ns).InnerText;
-                    document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
-                    document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
-                    return document;
-                }
-                if (document.docType == "612")
-                {
-                    document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
-                    document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
-                    document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
-                    return document;
-                }
-            
                 else
                 {
-                    document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
-                    document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
-                    document.serial = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:seria", ns).InnerText;
-                    document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
-                    return document;
+                    return document = null;
                 }
-                
-            } else
-            {
-                return document = null; 
             }
+            else
+            {
+                
+                return document = null;
+            }
+
+            
 
         } 
 

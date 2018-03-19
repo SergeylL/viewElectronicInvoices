@@ -109,8 +109,8 @@ namespace WindowsElnVatView.model
                     docsForXml +
               "</contract>" +
          "</deliveryCondition>" +
-              /*"<roster totalCostVat=\""+ dateFromForm.totalCostVatAttrib + "\" totalExcise=\""+ dateFromForm.totalExciseAttrib + "\" totalVat=\""+ dateFromForm.totalVatAttrib + "\" totalCost=\""+ dateFromForm.totalCostAttrib +"\">" +
-               */  itemXML +
+              "<roster totalCostVat=\""+ dateFromForm.totalCostVatAttrib + "\" totalExcise=\""+ dateFromForm.totalExciseAttrib + "\" totalVat=\""+ dateFromForm.totalVatAttrib + "\" totalCost=\""+ dateFromForm.totalCostAttrib +"\">" +
+                 itemXML +
              "</roster>" +
        "</issuance>";
             
@@ -159,11 +159,24 @@ namespace WindowsElnVatView.model
                                                 "<number>" + documents.number + "</number>" +
                                       "</document>" +
                                 "</documents>"; break;
+                case 611:
+                    newDocXml = "<documents>" +
+                           "<document>" +
+                               "<docType>" +
+                                  "<code>" + documents.docType + "</code>" +
+                                  "<value>" + documents.valueDoc + "</value>" +
+                                "</docType>" +
+                                      "<date>" + documents.date + "</date>" +
+                                      "<blankCode></blankCode>" +
+                                      "<seria>" + documents.serial + "</seria>" +
+                                      "<number>" + documents.number + "</number>" +
+                            "</document>" +
+                      "</documents>"; break;
                 case 601: newDocXml = "<documents>" +
                                      "<document>" +
                                          "<docType>" +
                                             "<code>" + documents.docType + "</code>" +
-                                            "<value>" + documents.blankCode + "</value>" +
+                                            "<value>" + documents.valueDoc + "</value>" +
                                           "</docType>" +
                                                 "<date>" + documents.date + "</date>" +
                                                 "<blankCode></blankCode>" +
@@ -175,7 +188,7 @@ namespace WindowsElnVatView.model
                                      "<document>" +
                                          "<docType>" +
                                             "<code>" + documents.docType + "</code>" +
-                                            "<value>" + documents.blankCode + "</value>" +
+                                            "<value>" + documents.valueDoc + "</value>" +
                                           "</docType>" +
                                                 "<date>" + documents.date + "</date>" +
                                                 "<blankCode></blankCode>" +
