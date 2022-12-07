@@ -54,7 +54,7 @@ namespace WindowsElnVatView
             checkBox9.Checked = formElnVat.specialDealGoodsRecipient;
             checkBox10.Checked = formElnVat.bigCompanyRecipient;
             textBox8.Text = formElnVat.countryCodeRecipient;
-
+            /*Модуль с работающим парсером
             var recipient = new parseNalogGovBy();
             textBox7.Text = formElnVat.unpRecipient;
             recipient = parseNalogGovBy.getXmlFromNalogGovBy(formElnVat.unpRecipient);
@@ -62,8 +62,10 @@ namespace WindowsElnVatView
             //не у всех забит адрес,если адреса нету,оставляем старый
             if(recipient.adressNalogGovBy == "") { textBox5.Text = formElnVat.addressRecipient; }
             else { textBox5.Text = recipient.adressNalogGovBy; }
-            
-
+            */
+            textBox7.Text = formElnVat.unpRecipient;
+            textBox6.Text = formElnVat.nameRecipient;
+            textBox5.Text = formElnVat.addressRecipient;
             //разносим по форме deliveryCondition
             textBox9.Text = formElnVat.numberDeliveryCondition;
             maskedTextBox3.Text = formElnVat.dateDeliveryCondition;

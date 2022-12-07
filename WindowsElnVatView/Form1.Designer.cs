@@ -337,7 +337,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(532, 90);
+            this.label11.Location = new System.Drawing.Point(502, 90);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(125, 13);
             this.label11.TabIndex = 34;
@@ -346,7 +346,7 @@
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(663, 89);
+            this.checkBox6.Location = new System.Drawing.Point(633, 90);
             this.checkBox6.Name = "checkBox6";
             this.checkBox6.Size = new System.Drawing.Size(86, 17);
             this.checkBox6.TabIndex = 35;
@@ -709,6 +709,7 @@
             this.button4.TabIndex = 93;
             this.button4.Text = "Проверить УНП";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // menuStrip1
@@ -745,14 +746,14 @@
             // раздельноеСохранениеToolStripMenuItem
             // 
             this.раздельноеСохранениеToolStripMenuItem.Name = "раздельноеСохранениеToolStripMenuItem";
-            this.раздельноеСохранениеToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.раздельноеСохранениеToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.раздельноеСохранениеToolStripMenuItem.Text = "Раздельное сохранение";
             this.раздельноеСохранениеToolStripMenuItem.ToolTipText = "Сохраняет измененый документ в отдельную папку.Удаляет старый.";
             // 
             // автопроверкаУНПToolStripMenuItem
             // 
             this.автопроверкаУНПToolStripMenuItem.Name = "автопроверкаУНПToolStripMenuItem";
-            this.автопроверкаУНПToolStripMenuItem.Size = new System.Drawing.Size(204, 22);
+            this.автопроверкаУНПToolStripMenuItem.Size = new System.Drawing.Size(205, 22);
             this.автопроверкаУНПToolStripMenuItem.Text = "Автопроверка УНП";
             this.автопроверкаУНПToolStripMenuItem.ToolTipText = "Проверяет УНП автоматически при открытии формы.";
             // 
@@ -963,7 +964,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Обозреватель эл. счет фактур v12032018";
+            this.Text = "Обозреватель эл. счет фактур v2.0";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);

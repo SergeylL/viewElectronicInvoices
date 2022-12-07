@@ -16,8 +16,10 @@ namespace WindowsElnVatView.model
         public static parseNalogGovBy getXmlFromNalogGovBy(string unp)
         {
             parseNalogGovBy recipient = new parseNalogGovBy();
-            string UrlPortal = "http://www.portal.nalog.gov.by/grp/getData?unp="+ unp +"&charset=UTF-8";
+            //string UrlPortal = "http://www.portal.nalog.gov.by/grp/getData?unp="+ unp +"&charset=UTF-8";
+            string UrlPortal = "https://lkfl.portal.nalog.gov.by/grp/getData?unp=" + unp + "&charset=UTF-8";
             XmlDocument getXml = new XmlDocument();
+            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3;
             try
             {
                 getXml.Load(UrlPortal);

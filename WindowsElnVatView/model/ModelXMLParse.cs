@@ -128,7 +128,7 @@ namespace WindowsElnVatView.model
                     {
                         document.docType = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:code", ns).InnerText;
                         document.valueDoc = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:docType/w3s:value", ns).InnerText;
-                        document.serial = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:seria", ns).InnerText;
+                       // document.serial = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:seria", ns).InnerText;
                         document.date = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:date", ns).InnerText;
                         document.number = selectNodeDocument.SelectSingleNode("/w3s:issuance/w3s:deliveryCondition/w3s:contract/w3s:documents/w3s:document/w3s:number", ns).InnerText;
                         return document;
