@@ -709,7 +709,6 @@
             this.button4.TabIndex = 93;
             this.button4.Text = "Проверить УНП";
             this.button4.UseVisualStyleBackColor = true;
-            this.button4.Visible = false;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // menuStrip1
@@ -964,7 +963,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Обозреватель эл. счет фактур v2.0";
+            this.Text = "Обозреватель эл. счет фактур v2.1+https";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.menuStrip1.ResumeLayout(false);

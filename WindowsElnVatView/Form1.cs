@@ -13,6 +13,7 @@ namespace WindowsElnVatView
     {
         //public Stream myStream { get; private set; }
         public string fileName { get; set; }
+        General formElnVat = new General();
         public Form1()
         {
             InitializeComponent();
@@ -22,7 +23,7 @@ namespace WindowsElnVatView
         {
             XmlDocument newDocumentXml = new XmlDocument();
             newDocumentXml.Load(openFile);
-            var formElnVat = new General();
+            
             var document = new ParseDocuments();
             var listRoster = new List<ModelXMLParsePosition>();
             formElnVat = XMLParsers.ParseElnVatFromXMLDocument(newDocumentXml);
@@ -54,18 +55,18 @@ namespace WindowsElnVatView
             checkBox9.Checked = formElnVat.specialDealGoodsRecipient;
             checkBox10.Checked = formElnVat.bigCompanyRecipient;
             textBox8.Text = formElnVat.countryCodeRecipient;
-            /*Модуль с работающим парсером
+            //Модуль с работающим парсером
             var recipient = new parseNalogGovBy();
             textBox7.Text = formElnVat.unpRecipient;
-            recipient = parseNalogGovBy.getXmlFromNalogGovBy(formElnVat.unpRecipient);
+            recipient = parseNalogGovBy.getXmlFromNalogGovBy(formElnVat);
             textBox6.Text = recipient.nameNalogGovBy;
             //не у всех забит адрес,если адреса нету,оставляем старый
             if(recipient.adressNalogGovBy == "") { textBox5.Text = formElnVat.addressRecipient; }
             else { textBox5.Text = recipient.adressNalogGovBy; }
-            */
-            textBox7.Text = formElnVat.unpRecipient;
-            textBox6.Text = formElnVat.nameRecipient;
-            textBox5.Text = formElnVat.addressRecipient;
+           
+            //textBox7.Text = formElnVat.unpRecipient;
+            //textBox6.Text = formElnVat.nameRecipient;
+            //textBox5.Text = formElnVat.addressRecipient;
             //разносим по форме deliveryCondition
             textBox9.Text = formElnVat.numberDeliveryCondition;
             maskedTextBox3.Text = formElnVat.dateDeliveryCondition;
@@ -292,7 +293,7 @@ namespace WindowsElnVatView
         {
             var recipient = new parseNalogGovBy();
             string unp = textBox7.Text;
-            recipient = parseNalogGovBy.getXmlFromNalogGovBy(unp);
+            recipient = parseNalogGovBy.getXmlFromNalogGovBy(formElnVat);
             textBox6.Text = recipient.nameNalogGovBy;
             textBox5.Text = recipient.adressNalogGovBy;
         }

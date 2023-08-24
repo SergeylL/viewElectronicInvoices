@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Windows.Forms;
 using System.Xml;
@@ -13,15 +14,18 @@ namespace WindowsElnVatView.model
         public string nameNalogGovBy { get; set; }
         public string adressNalogGovBy { get; set; }
 
-        public static parseNalogGovBy getXmlFromNalogGovBy(string unp)
+        public static parseNalogGovBy getXmlFromNalogGovBy(General obj)
         {
             parseNalogGovBy recipient = new parseNalogGovBy();
             //string UrlPortal = "http://www.portal.nalog.gov.by/grp/getData?unp="+ unp +"&charset=UTF-8";
-            string UrlPortal = "https://lkfl.portal.nalog.gov.by/grp/getData?unp=" + unp + "&charset=UTF-8";
+            string UrlPortal = "https://lkfl.portal.nalog.gov.by/grp/getData?unp=" + obj.unpRecipient + "&charset=UTF-8&type=xml";
             XmlDocument getXml = new XmlDocument();
-            System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Ssl3;
-            try
+                        try
             {
+                System.Net.ServicePointManager.SecurityProtocol = System.Net.SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
+                ////HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(UrlPortal);
+               // HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
+
                 getXml.Load(UrlPortal);
                 XmlNode urlXml = getXml;
                 XmlNode selectGeneralRow = urlXml.SelectSingleNode("/ROWSET/ROW");
@@ -31,6 +35,9 @@ namespace WindowsElnVatView.model
             }
             catch (Exception e)
             {
+                recipient.unpNalogGovBy = obj.unpRecipient;
+                recipient.nameNalogGovBy = obj.nameRecipient;
+                recipient.adressNalogGovBy = obj.addressRecipient;
                 const string caption = "Внимание!";
                 var result = MessageBox.Show(e.Message, caption,
                                              MessageBoxButtons.OK,
